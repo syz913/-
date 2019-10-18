@@ -24,3 +24,20 @@
   
 <img src="https://img-blog.csdn.net/20180626120740145?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3did2FuZzE5OTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width="80%">
 流水线方式第一个请求2RTT，然后发送所有请求，如果所有响应可以容纳在TCP段中 3RTT + 传输时间
+
+#### get post
+application/x-www-form-urlencoded:表单数据
+传输表单数据时，
+GET请求的数据会附在URL之后（就是把数据放置在HTTP协议头中），以?分割URL和传输数据，参数之间以&相连，如：login.action?name=hyddd&password=idontknow&verify=%E4%BD%A0%E5%A5%BD。如果数据是英文字母/数字，原样发送，如果是空格，转换为+，如果是中文/其他字符，则直接把字符串用BASE64加密，得出如：%E4%BD%A0%E5%A5%BD，其中％XX中的XX为该符号以16进制表示的ASCII。
+#### URI URL
+> URI = URL+URN
+URI，是统一资源标识符，用来唯一的标识一个资源。而URL是统一资源定位器，它是一种具体的URI，即URL可以用来标识一个资源，而且还指明了如何locate这个资源。而URN，统一资源命名，是通过名字来标识资源，比如mailto:java-net@java.sun.com。也就是说，URI是以一种抽象的，高层次概念定义统一资源标识，而URL和URN则是具体的资源标识的方式。URL和URN都是一种URI；
+URL一般由三部组成
+①协议(或称为服务方式)
+②存有该资源的主机IP地址(有时也包括端口号)
+③主机资源的具体地址。如目录和文件名等
+
+URI一般由三部组成
+①访问资源的命名机制
+②存放资源的主机名
+③资源自身的名称，由路径表示，着重强调于资源。

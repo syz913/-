@@ -1,0 +1,3 @@
+配置文件在vim /etc/v2ray/config.json
+查看状态systemctl status v2ray
+开启systemctl start v2ray.service

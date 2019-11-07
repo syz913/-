@@ -1,6 +1,7 @@
-[HTTP的持续连接和非持续连接](HTTP的持续连接和非持续连接)
-
-[TCP连接中的ACK和seq](TCP连接中的ACK和seq)
+- [HTTP的持续连接和非持续连接](#HTTP的持续连接和非持续连接)
+- [TCP连接中的ACK和seq](#TCP连接中的ACK和seq)
+- [基本匹配](#1-基本匹配)
+- [元字符](#2-元字符)
 
 ### HTTP的持续连接和非持续连接
 #### HTTP1.0采用非持续(Non-persistent)连接方式： 

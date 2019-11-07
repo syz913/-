@@ -1,21 +1,23 @@
 ### 目录
 
 - [HTTP的持续连接和非持续连接](#HTTP的持续连接和非持续连接)
-  - [非持续连接](#HTTP1-0采用非持续(Non-persistent)连接方式：)
-  - [持续连接](#HTTP1-1引入持续(persistent)连接方式)
+  - [非持续连接](#非持续(Non-persistent)连接方式)
+  - [持续连接](#持续(persistent)连接方式)
 - [TCP连接中的ACK和seq](#TCP连接中的ACK和seq)
   - [TCP建立连接](#TCP建立连接)
   - [TCP传输数据](#TCP传输数据)
   - [TCP关闭连接](#TCP关闭连接)
 
 ### HTTP的持续连接和非持续连接
-#### HTTP1.0采用非持续(Non-persistent)连接方式： 
+#### 非持续(Non-persistent)连接方式
+ HTTP 1.0采用非持续(Non-persistent)连接方式
  新建一个TCP连接需要RTT，然后每次HTTP请求需要1RTT，如果有N个内嵌对象，先请求HTML，再请求N个对象
  响应时间为: (N+1)*2RTT + 传输时间 
  
  <img src="https://img-blog.csdn.net/20180626120814323?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3did2FuZzE5OTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width="80%">
  
-#### HTTP1.1引入持续(persistent)连接方式 
+#### 持续(persistent)连接方式 
+HTTP1.1引入持续(persistent)连接方式 
 > 在收到HTTP响应时暂时不关闭TCP连接，而是等待一段时间 
 
 由于不需要每次新建TCP连接，所以需要的时间为RTT + (N+1)RTT = (N+2)RTT

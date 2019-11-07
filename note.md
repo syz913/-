@@ -6,7 +6,7 @@
 - [TCP连接中的ACK和seq](#TCP连接中的ACK和seq)
   - [TCP建立连接](#TCP建立连接)
   - [TCP传输数据](#TCP传输数据)
-  - []()
+  - [TCP关闭连接](#TCP关闭连接)
 
 ### HTTP的持续连接和非持续连接
 #### HTTP1.0采用非持续(Non-persistent)连接方式： 

@@ -1,8 +1,8 @@
 ### 目录
 
 - [HTTP的持续连接和非持续连接](#HTTP的持续连接和非持续连接)
-  - [非持续连接](#HTTP10采用非持续(Non-persistent)连接方式：)
-  - [持续连接](#HTTP11引入持续(persistent)连接方式)
+  - [非持续连接](#HTTP1-0采用非持续(Non-persistent)连接方式：)
+  - [持续连接](#HTTP1-1引入持续(persistent)连接方式)
 - [TCP连接中的ACK和seq](#TCP连接中的ACK和seq)
 
 ### HTTP的持续连接和非持续连接

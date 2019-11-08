@@ -112,3 +112,9 @@ ACK=4
 再稍后，接收方所有接收到的segment为 “123567”，接收方如何做？
 ACK =4
 
+#### 2. Reno
+![批注 2019-11-08 103550](C:\Users\syz\Pictures\批注 2019-11-08 103550.png)
+当收到三个重复ACK时，快速重传丢失的TCP段，进入快速恢复
+- 快速重传，ssthresh=max(cwnd/2, 2*SMSS), cwnd = ssthresh+n*SMSS(n一般为3)
+- 由于快速恢复阶段需要 1 RTT，所以中间仍然会收到重复ACK，每收到一个，cwnd+=SMSS
+- 当确认新数据的下一个ACK(即丢失报文段及其后各报文段的累加确认)到达时，cwnd=ssthresh，进入拥塞避免阶段

@@ -114,7 +114,6 @@ ACK =4
 
 #### 2. Reno
 ![image](file:///C:/Users/syz/Pictures/%E6%89%B9%E6%B3%A8%202019-11-08%20103550.png)
-file:///C:/Users/syz/Pictures/%E6%89%B9%E6%B3%A8%202019-11-08%20103550.png
 当收到三个重复ACK时，快速重传丢失的TCP段，进入快速恢复
 - 快速重传，ssthresh=max(cwnd/2, 2*SMSS), cwnd = ssthresh+n*SMSS(n一般为3)
 - 由于快速恢复阶段需要 1 RTT，所以中间仍然会收到重复ACK，每收到一个，cwnd+=SMSS

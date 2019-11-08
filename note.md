@@ -16,7 +16,7 @@
  新建一个TCP连接需要RTT，然后每次HTTP请求需要1RTT，如果有N个内嵌对象，先请求HTML，再请求N个对象
  响应时间为: (N+1)*2RTT + 传输时间 
  
- <img src="https://img-blog.csdn.net/20180626120814323?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3did2FuZzE5OTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width="80%">
+ <img src="https://img-blog.csdn.net/20180626120814323?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3did2FuZzE5OTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width="60%" height=“60%>
  
 #### 持续连接方式 
 HTTP1.1引入持续(persistent)连接方式 
@@ -36,7 +36,7 @@ HTTP1.1引入持续(persistent)连接方式
   . 如果中间通过代理服务器，会有实现不兼容的问题 
   . 绝大部分浏览器缺省关闭流水线方式
   
-<img src="https://img-blog.csdn.net/20180626120740145?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3did2FuZzE5OTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width="80%">
+<img src="https://img-blog.csdn.net/20180626120740145?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3did2FuZzE5OTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width="60%" height="60%">
 流水线方式第一个请求2RTT，然后发送所有请求，如果所有响应可以容纳在TCP段中 3RTT + 传输时间
 
 #### get post
@@ -113,8 +113,8 @@ ACK=4
 ACK =4
 
 #### 2. Reno
-<img src="file:///C:/Users/syz/Pictures/%E6%89%B9%E6%B3%A8%202019-11-08%20103550.png">
-
+![image](file:///C:/Users/syz/Pictures/%E6%89%B9%E6%B3%A8%202019-11-08%20103550.png)
+file:///C:/Users/syz/Pictures/%E6%89%B9%E6%B3%A8%202019-11-08%20103550.png
 当收到三个重复ACK时，快速重传丢失的TCP段，进入快速恢复
 - 快速重传，ssthresh=max(cwnd/2, 2*SMSS), cwnd = ssthresh+n*SMSS(n一般为3)
 - 由于快速恢复阶段需要 1 RTT，所以中间仍然会收到重复ACK，每收到一个，cwnd+=SMSS

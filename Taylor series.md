@@ -1,15 +1,7 @@
-#### 反三角函数求导积分
-$$
-(arcsinx)'=1/\sqrt{1-x^2} \\
-(arccosx)'=-1/\sqrt{1-x^2} \\
-(arctanx)'=1/\sqrt{1+x^2} \\
-(arccotx)'=-1/\sqrt{1+x^2}
-$$
-
-
-
 #### 泰勒展开
 - [泰勒级数](#泰勒级数)
+- [傅里叶级数](#Fourier级数)
+- [反三角函数求导](#反三角函数求导)
 - [常用公式代码](#常用公式代码)
   - [上/下标](#上/下标)
   - [分式](#分式)
@@ -37,7 +29,7 @@ $$
 (1+x)^\alpha=\sum_{n=1}^{\infty}
 \binom{\alpha}{n}
 {x^n}
-=1+\alpha x+\frac{\alpha(\alpha-1)}{2 !}x^2+...+\frac{\alpha(\alpha-1)...(\alpha-n+1)}{n !}x^n+...\quad\forall x:|x|<1,\forall\alpha\epsilon C
+=1+\alpha x+\frac{\alpha(\alpha-1)}{2 !}x^2+...+\frac{\alpha(\alpha-1)...(\alpha-n+1)}{n !}x^n+... \\ \quad\forall x:|x|<1,\forall\alpha∈ C
 $$
 
 $$
@@ -58,6 +50,24 @@ $$
 
 $$
 cosx =\sum_{n=1}^{\infty}\frac{(-1)^n}{(2n)!}x^{2n}=1-\frac{x^2}{2!}+\frac{x^4}{4!}-...
+$$
+
+##### 反三角函数求导
+
+$$
+(arcsinx)'=1/\sqrt{1-x^2} \\
+(arccosx)'=-1/\sqrt{1-x^2} \\
+(arctanx)'=1/\sqrt{1+x^2} \\
+(arccotx)'=-1/\sqrt{1+x^2}
+$$
+
+##### Fourier级数
+
+$$
+\frac{1}{1^2}+\frac{1}{3^2}+\frac{1}{5^2}+···=\frac{\pi^2}{8} \\
+\frac{1}{1^2}+\frac{1}{2^2}+\frac{1}{3^2}+···=\frac{\pi^2}{6} \\
+\frac{1}{1^2}-\frac{1}{2^2}+\frac{1}{3^2}+···=\frac{\pi^2}{12} \\
+Dirichlet积分:   \int(\frac{sinx}{x})dx=\frac{\pi}{2}
 $$
 
 

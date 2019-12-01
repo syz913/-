@@ -12,6 +12,7 @@
 - [网络(子网)地址和广播地址计算](#网络地址和广播地址计算)
 - [DHCP工作过程](#DHCP工作过程)
 - [两次NAT](#两次NAT)
+- [LSP 和 LSA](#LSP-和-LSA)
 
 ### HTTP的持续连接和非持续连接
 #### 非持续连接方式
@@ -147,7 +148,7 @@ eg: IP地址10.145.129.20，掩码255.255.248.0，网络地址和广播地址怎
 
 ### DHCP工作过程
 
-![1574388793388](C:\Users\syz\AppData\Roaming\Typora\typora-user-images\1574388793388.png)
+![image](https://github.com/syz913/Course-notes/blob/master/images/DHCP.png)
 
 其中255.255.255.255是本地广播地址，目标地址为全1的IP分组表示要发送给该链路上所有主机。全0表示那些尚未知道自身IP地址的主机。
 
@@ -157,7 +158,9 @@ eg: IP地址10.145.129.20，掩码255.255.248.0，网络地址和广播地址怎
 
 ### 两次NAT
 
-![1574391980193](C:\Users\syz\AppData\Roaming\Typora\typora-user-images\1574391980193.png)
+![image](https://github.com/syz913/Course-notes/blob/master/images/NAT.png)
 
 这时候主要是考虑到内部网络和外网中的地址有重复的情况。如内网和公网IP都是overlap_ip，如果PC2使用serverA的域名访问该服务器，但PC2根据DNS服务器解析的结果很可能访问PC1，所以DNS响应经过NAT时，将serverA的overlap_ip映射为overlap_priv_ip。
+
+### LSP 和 LSA
 

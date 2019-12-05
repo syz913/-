@@ -33,3 +33,36 @@
 chmod 761 game // 定义game文件的访问权限
 ```
 
+#### Chapter 11
+
+##### File
+
+- logical storage unit
+
+- collection of related information
+
+##### File system resides on secondary storage (disks)
+
+- Provieds user inteface to storage, mapping logical to physical
+- provides efficent and convenient
+
+##### Efficiency and Performance
+
+Efficiency dependent on:
+
+- Disk allocation and directory algorithm
+- Types of data kept in file's directory entry
+- pre-allocation or as-needed allocation of metadata structures
+- fixed-size or varying-size data structures
+
+Performance
+
+- keeping data and metadata close together
+- buffer cache — separate section of main memory for frequently
+- synchronous writes sometimes requested by apps or needed by OS
+  - No buffering/caching — writes must hit disk before acknowledgement
+  - Asynchronous writes more common, buffer-able, faster
+- Free-behind and read-ahead — techniques to optimize sequential access
+- Reads frequently slower than writes
+
+  

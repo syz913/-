@@ -13,6 +13,7 @@
 - [DHCP工作过程](#DHCP工作过程)
 - [两次NAT](#两次NAT)
 - [LSP 和 LSA](#LSP-和-LSA)
+- [IPV4和IPV6的区别](#IPV4和IPV6的区别)
 
 ### HTTP的持续连接和非持续连接
 #### 非持续连接方式
@@ -164,3 +165,12 @@ eg: IP地址10.145.129.20，掩码255.255.248.0，网络地址和广播地址怎
 
 ### LSP 和 LSA
 
+### IPV4和IPV6的区别
+
+[参考网址](https://www.ibm.com/support/knowledgecenter/zh/ssw_ibm_i_72/rzai2/rzai2compipv4ipv6.htm)
+
+IPV6将•地址解析(ARP)、差错报告(ICMP)和组播成员管理(IGMP)结合在一起在ICMPv6中定义
+
+•Multicast Listener Discovery: 类似于IGMPv2，而MLDv2类似于IGMPv3
+
+IPV6没有子网掩码的概念，/nnn(最多3位十进制数字，0 <= nnn <= 128)后缀，用于指定地址的子网前缀。

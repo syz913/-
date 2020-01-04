@@ -66,3 +66,5 @@ Performance
 - Reads frequently slower than writes
 
   
+
+页大小和帧大小相同：实现分页的基本方法涉及将物理内存分为固定大小的块，称为帧或页帧，而将逻辑内存也分为同样大小的块，称为页或页面。

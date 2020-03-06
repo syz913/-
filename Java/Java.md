@@ -1,0 +1,1 @@
+char 在java中是2个字节。java采用unicode，2个字节（16位）来表示一个字符

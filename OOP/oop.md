@@ -1,10 +1,21 @@
 ## 目录
 
 - [set操作](#set操作)
+- [map操作](#map操作)
 - [字符串操作](#字符串操作)
 - [文件操作](#文件操作)
+- [设置精度](#设置精度)
+- [快捷键](#快捷键)
 
 ### set操作
+
+> set是一种关联式容器，其特性如下：
+>
+> - set以RBTree作为底层容器
+> - 所得元素的只有key没有value，value就是key
+> - 不允许出现键值重复
+> - 所有的元素都会被自动排序
+> - 不能通过迭代器来改变set的值，因为set的值就是键
 
 ```C++
 unordered_set代表是无序的，
@@ -40,7 +51,7 @@ set<int> numSet;
 
 ### 字符串操作
 
-```
+```c++
 1.string类型的声明： 
 string s;
 
@@ -116,9 +127,48 @@ int cmp(string a,string b)
  
 17. 交换字符串
    swap(str1,str2);
+18. 反转字符串
+    reverse(s.begin(),s.end())
 ```
 
 string spaces(, ' '); 生成 n个空格给spaces，其中注意必须是字符不能是字符串
+
+### map操作
+
+> map以RBTree作为底层容器
+>
+> 所有元素都是键+值存在
+>
+> 不允许键重复
+>
+> 所有元素是通过键进行自动排序的
+>
+> map的键是不能修改的，但是其键对应的值是可以修改的
+
+```c++
+mapstring.insert(pair<string,string>("a","b")) // pair<string,string> 必不可少，并且里面的两个类型要与定义一致
+mapstring["c"]="d";
+
+
+1)find() 查找并且找出value 2）count() 确定key是否存在，存在返回1，不存在返回0
+1）find形式：比较麻烦，需要借助迭代器
+//定义迭代器 map<string,string>::iterator iter;
+iter=mapstring.find("a")
+if(iter!=mapstring.end()) //用这种方式迭代器迭代不到最后，说明键值是存在的
+cout<<iter->first<<endl; //iter->first 这指的是key iter->value 指的是value
+else
+cout<<cant not find this key<<endl;
+2） mapstring.count(key) //这种情况下直接用就可以了
+    
+    
+    iter =mapstring.find(key); // 即使key不存在也不会报错，因为有if进行判断，存在才删除
+if(iter!=mapstring.end()) //这里的iter迭代器和上面一样的，定义是一样的。
+mapstring.erase(iter);
+
+
+for(iter=mapstring.begin();iter!=mapstring.end;iter++) //迭代打印
+cout<<iter->first<<"="<<iter->second<<" ";
+```
 
 ### 文件操作
 
@@ -153,4 +203,38 @@ ofstream outfile("a.txt", ios::out);
 ```
 
 https://zhuanlan.zhihu.com/p/49757495
+
+### 设置精度
+
+```C++
+cout.setf(ios::right); // 设置对齐方式
+cout.width(8); //设置输出宽度
+cout.fill('0'); //将多余的空格用0填充
+cout.precision(2); //设置输出精度，保留有效数字
+cout.setf(ios::showpoint); //将小数精度后面的0显示出来
+cout.flags(ios::fixed);//这时候precision就是保留小数点后几位
+
+cout << setprecision(2)<<1.25 << endl;
+同样的cout<<fixed<<setprecision(2)<<1.25<<endl;(在<iomanip>中)
+
+streamsize，这样的int类型的类型来特别表达有关流的当前操作位置以及长度问题(在<ios>中)
+```
+
+排序操作
+
+```C++
+sort (myvector.begin(), myvector.begin()+4); 
+
+bool myfunction (int i,int j) { return (i<j); }//升序排列
+sort (myvector.begin()+4, myvector.end(), myfunction);
+```
+
+### 快捷键
+
+```
+CTRL + K CTRL + F 格式化
+Ctrl + K，Ctrl + C = 注释选定行
+Ctrl + K，Ctrl + U = 取消选定行的注释
+Ctrl + K，Ctrl + D = 正确对齐所有代码
+```
 

@@ -227,6 +227,11 @@ sort (myvector.begin(), myvector.begin()+4);
 
 bool myfunction (int i,int j) { return (i<j); }//升序排列
 sort (myvector.begin()+4, myvector.end(), myfunction);
+
+sort第三个参数中可以使用lambda表达式自定义排序
+vector<A> test;
+sort(test.begin(),test.end(),[](A x,A y){return x.a>y.a;});
+在sort函数的第三个参数中，[]表示需要作用域的哪些参数传入，这里为空，表示不需要传入任何参数，常见的有=和&，(A x, A y)表示两个入参，{}里面表示执行的函数，这里将返回值给省略了，根据return确定是bool类型的返回值。
 ```
 
 ### 快捷键

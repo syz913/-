@@ -1,3 +1,4 @@
+```
 char 在java中是2个字节。java采用unicode，2个字节（16位）来表示一个字符
 
 printf主要是继承了C语言的printf的一些特性，可以进行格式化输出
@@ -17,6 +18,7 @@ System.out.printf("the number is: d",t);
    	  'a', 'A' 浮点 结果被格式化为带有效位数和指数的十六进制浮点数
 
 println("test")相当于print("test\n")就是一般的输出字符串
+```
 
 
 
@@ -40,4 +42,20 @@ private：声明当前被修饰的变量、方法为私有的。这里的私有�
 https://blog.csdn.net/jiangnan2014/article/details/22944075
 
 
+
+方法中声明的基本数据类型等一般存放在栈中，类的成员变量一般存放在堆中。
+
+final static必须在对象创建前赋值，不可以在构造函数赋值
+
+因为是**static**的，会在对象创建前分配空间
+
+因为是**final**的，必须在分配空间的时候赋值
+
+final可以在构造函数赋值
+
+![image-20200327142419009](C:\Users\syz\AppData\Roaming\Typora\typora-user-images\image-20200327142419009.png)
+
+不加public等的不同package都不能import
+
+String 字符串常量，字符串长度不可变。重新赋值修改字符串**其实是创建了新的对象，所指向的内存空间不同**。（用于存放字符的数组被声明为final的，因此只能赋值一次，不可再更改）
 

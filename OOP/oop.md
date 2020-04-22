@@ -3,6 +3,7 @@
 - [set操作](#set操作)
 - [map操作](#map操作)
 - [字符串操作](#字符串操作)
+- [vector操作](#vector操作)
 - [文件操作](#文件操作)
 - [设置精度](#设置精度)
 - [快捷键](#快捷键)
@@ -129,9 +130,28 @@ int cmp(string a,string b)
    swap(str1,str2);
 18. 反转字符串
     reverse(s.begin(),s.end())
+    
+ 
 ```
 
 string spaces(, ' '); 生成 n个空格给spaces，其中注意必须是字符不能是字符串
+
+### vector操作
+
+```C++
+vector<int> ret;
+ret.insert(ret.end(), bottom.begin(), bottom.end());
+copy(bottom.begin(), bottom.end(), back_insert(ret));
+
+remove_copy(bottom.begin(), bottom.end(), back_insert(ret), 0);
+//copy的时候把0移除
+
+find_if()函数，它接收一个函数对象的参数作为参数， 并使用它来做更复杂的评价对象是否和给出的查找条件相符。
+
+accumulate(ret.begin(), ret.end(), 0.0);加起来ret的所有值，初始值为0.0
+```
+
+![image-20200415122307193](C:\Users\syz\AppData\Roaming\Typora\typora-user-images\image-20200415122307193.png)
 
 ### map操作
 
@@ -243,3 +263,4 @@ Ctrl + K，Ctrl + U = 取消选定行的注释
 Ctrl + K，Ctrl + D = 正确对齐所有代码
 ```
 
+18j9bk65

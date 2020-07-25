@@ -59,7 +59,7 @@ final可以在构造函数赋值
 
 String 字符串常量，字符串长度不可变。重新赋值修改字符串**其实是创建了新的对象，所指向的内存空间不同**。（用于存放字符的数组被声明为final的，因此只能赋值一次，不可再更改）
 
-```Java
+```
 继承、重载、多态
 
 package com.demo;
@@ -177,7 +177,7 @@ static类型的属性和方法，在类加载的时候就会存在于内存中�
 
 因为泛型类中的泛型参数的实例化是在定义对象的时候指定的，而静态变量和静态方法不需要使用对象来调用。对象都没有创建，如何确定这个泛型参数是何种类型，所以当然是错误的。
 
-```java
+```
 public static void print (T var) {
     System.out.println(var);
 }
@@ -187,7 +187,7 @@ public static void print (T var) {
 
 这是一个泛型方法，在泛型方法中使用的T是自己在方法中定义的T，而不是泛型类中的T。
 
-```java
+```
 public static <T> void test(T k) {
 
 }
@@ -223,3 +223,153 @@ java在使用流时,都会有一个缓冲区,按一种它认为比较高效的�
 
 1. **就近匹配原则**：找到离异常异常抛出点最近的处理单元，叫被**“捕获”**，然后就不再往下找。
 2. **向上转型原则**：一个特定类型的异常处理单元，可以捕捉它**本身**以及所有从它**派生**的异常。
+
+### Java并发24:Atomic系列-原子类型数组AtomicXxxxArray学习笔记
+
+#### 原子类型数组
+
+在java.util.concurrent.atomic中，原子类型数组有以下三种：
+
+- AtomicLongArray：提供对int[]数组元素的原子性更新操作。-
+- AtomicIntegerArray：提供对long[]数组元素的原子性更新操作。
+- AtomicReferenceArray：提供对引用类型[]数组元素的原子性更新操作。
+
+#### 原子类型数组的通用方法
+
+首先学习上述三种原子类型数组的通用方法，这些方法如下：
+
+构造器：分为初始长度构造器和初始数组构造器，不提供无参构造器。
+
+- get(index)：取值，具有原子性和可见性。
+- set(index)：赋值，具有原子性和可见性。
+- lazySet(index,newValue)：赋值，具有原子性，不具备可见性。
+- getAndSet(index,newValue)：赋值并返回旧值，具有原子性和可见性。
+- compareAndSet(index,expect,newValue)：如果当前是期望值则赋值并返回赋值成功与否，具有原子性和可见性。
+- weakCompareAndSet(index,expect,newValuee)：与compareAndSet(index,expect,newValue)类似。
+
+### notify和notifyAll
+
+先说两个概念：锁池和等待池
+
+锁池:假设线程A已经拥有了某个对象(注意:不是类)的锁，而其它的线程想要调用这个对象的某个synchronized方法(或者synchronized块)，由于这些线程在进入对象的synchronized方法之前必须先获得该对象的锁的拥有权，但是该对象的锁目前正被线程A拥有，所以这些线程就进入了该对象的锁池中。
+
+等待池:假设一个线程A调用了某个对象的wait()方法，线程A就会释放该对象的锁后，进入到了该对象的等待池中
+
+> Reference：[java中的锁池和等待池](https://link.zhihu.com/?target=http%3A//blog.csdn.net/emailed/article/details/4689220)
+
+然后再来说notify和notifyAll的区别
+
+- 如果线程调用了对象的 wait()方法，那么线程便会处于该对象的等待池中，等待池中的线程不会去竞争该对象的锁。
+- 当有线程调用了对象的 notifyAll()方法（唤醒所有 wait 线程）或 notify()方法（只随机唤醒一个 wait 线程），被唤醒的的线程便会进入该对象的锁池中，锁池中的线程会去竞争该对象锁。也就是说，调用了notify后只要一个线程会由等待池进入锁池，而notifyAll会将该对象等待池内的所有线程移动到锁池中，等待锁竞争。
+- 优先级高的线程竞争到对象锁的概率大，假若某线程没有竞争到该对象锁，它还会留在锁池中，唯有线程再次调用 wait()方法，它才会重新回到等待池中。而竞争到对象锁的线程则继续往下执行，直到执行完了 synchronized 代码块，它会释放掉该对象锁，这时锁池中的线程会继续竞争该对象锁。
+
+> Reference：[线程间协作：wait、notify、notifyAll](https://link.zhihu.com/?target=http%3A//wiki.jikexueyuan.com/project/java-concurrency/collaboration-between-threads.html)
+
+综上，所谓唤醒线程，另一种解释可以说是将线程由等待池移动到锁池，notifyAll调用后，会将全部线程由等待池移到锁池，然后参与锁的竞争，竞争成功则继续执行，如果不成功则留在锁池等待锁被释放后再次参与竞争。而notify只会唤醒一个线程。
+
+### Java 反射
+
+**Class**类是一种**Object**
+
+- **Object**是所有类的继承根源
+
+**当一个类被加载，**JVM **便自动产生一个**Class**对象**
+
+```Java
+//获取Test这个类的Class对象的引用
+Class myClass = Test.class;  
+//获取Test对象test对应的Class对象的引用
+Test test = new Test();
+Class myClass = test.getClass();
+
+```
+
+**Class类的构造函数是私有的**
+
+- **只允许 JVM 创建**
+
+- **程序不能 Class a = new Class();**
+
+**可用于实现插件**
+
+- **插件实现规定的Interface**
+
+- **插件编译成 jar 包**
+
+- **运行时根据信息（如配置文件）获得插件类名**
+
+- **创建对象**
+
+- **cast成规定的Interface，并调用interface规定的接口**
+
+**插件的作用**
+
+- **方便（第三方）扩展程序**
+
+- **升级**
+
+- **针对需求（数据格式、用户需求等）改变程序行为**
+
+- **选择性加载（避免主程序过慢）**
+
+### instanceof关键字
+
+**布尔计算(boolean)**
+
+**用法 object  instanceof  Class**
+
+**a** **instanceof** **B**
+
+- **判断 a 是不是 B 这个类或者接口的实例**
+
+- **返回 true**
+
+  - **如果B是a对应的类** **a = new B();**
+  - **或者，是 a 对应的类的父类**
+  - **或者，是a对应的类实现的接口**
+
+
+### Java集合类
+
+#### Collection接口
+
+##### List接口
+
+- ArrayList
+- LinkedList
+
+##### Set接口
+
+- HashSet
+- TreeSet
+
+AVL树、RB树
+
+#### Map接口
+
+- HashMap
+- TreeMap
+
+
+
+### Native优缺点
+
+#### 优点
+
+> 1. 由于so库反编译比较困难，因此提高代码的安全性。
+> 2. 可以方便地使用目前已有的C/C++开源库。
+> 3. 方便移植到其它平台。
+> 4. 在Native中创建的资源存在于Native Heap上，需要主动去释放它，对于应用而言没有OOM的问题，并且也不需要考虑GC时锁线程带来的掉帧。如Facebook的Fresco框架就是将图片缓存到Native Heap上。
+> 5. 在Dalvik虚拟机中，会省去由JIT编译期转为本地代码的步骤
+
+#### 缺点
+
+> 1. 在JDK1.6版本时，Java调用JNI的耗时是Java调用Java的5倍。随着JDK版本升级，差距慢慢减小。
+> 2. Java与Native通信，需要多出一些系统开销。
+> 3. 需要对不同的处理器架构进行支持，存在明显的兼容性问题。
+
+
+
+因为一旦使用JNI，JAVA程序就丧失了JAVA平台的两个优点：
+1、程序不再跨平台。要想跨平台，必须在不同的系统环境下重新编译本地语言部分。
+2、程序不再是绝对安全的，本地代码的不当使用可能导致整个程序崩溃。一个通用规则是，你应该让本地方法集中在少数几个类当中。这样就降低了JAVA和C/C++之间的耦合性。

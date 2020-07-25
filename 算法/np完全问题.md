@@ -15,3 +15,4 @@ NPC问题是NP问题的子集。
 **NPH问题**：我们又叫NP难问题，他不一定是一个NP问题，然后所有的NP问题都可以在多项式时间内转化为他的话，我们就叫他NPH（hard）问题。
 
 ![image-20200401150947496](C:\Users\syz\AppData\Roaming\Typora\typora-user-images\image-20200401150947496.png)
+

@@ -50,6 +50,38 @@ set<int> numSet;
     }
 ```
 
+### bitset
+
+https://blog.csdn.net/lanchunhui/article/details/49644373
+
+```C++
+bitset的操作
+成员函数	函数功能
+bs.any()	是否存在值为1的二进制位
+bs.none()	是否不存在值为1的二进制位
+或者说是否全部位为0
+bs.size()	位长，也即是非模板参数值
+bs.count()	值为1的个数
+bs.test(pos)	测试pos处的二进制位是否为1
+与0做或运算
+bs.set()	全部位置1
+bs.set(pos)	pos位处的二进制位置1
+与1做或运算
+bs.reset()	全部位置0
+bs.reset(pos)	pos位处的二进制位置0
+与0做或运算
+bs.flip()	全部位逐位取反
+bs.flip(pos)	pos处的二进制位取反
+bs.to_ulong()	将二进制转换为unsigned long输出
+bs.to_string()	将二进制转换为字符串输出
+~bs	按位取反
+效果等效为bs.flip()
+os << b	将二进制位输出到os流
+小值在右，大值在左
+```
+
+
+
 ### 字符串操作
 
 ```c++
@@ -280,6 +312,8 @@ https://liam.page/2018/03/16/keywords-typename-and-class-in-Cxx/
 
 https://blog.csdn.net/i_chaoren/article/details/77281785
 
+[virtual用法](https://blog.csdn.net/jirryzhang/article/details/79392934?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase)
+
 C++多态(polymorphism)是通过虚函数来实现的，虚函数允许子类重新定义成员函数，而子类重新定义父类的做法称为覆盖(override)，或者称为重写。
 
 最常见的用法就是声明基类的指针，利用该指针指向任意一个子类对象，调用相应的虚函数，动态绑定。由于编写代码的时候并不能确定被调用的是基类的函数还是哪个派生类的函数，所以被成为“虚”函数。如果没有使用虚函数的话，即没有利用C++多态性，则利用基类指针调用相应的函数的时候，将总被限制在基类函数本身，而无法调用到子类中被重写过的函数。
@@ -311,3 +345,73 @@ return *this返回的是当前对象的克隆或者本身（若返回类型为A�
 - 防止返回对象（返回对象也可以进行连续赋值）的时候调用拷贝构造函数和析构函数导致不必要的开销，降低赋值运算符等的效率。
 
   https://blog.csdn.net/realdinghao/article/details/19899383
+  
+### lower_bound和upper_bound
+
+1. 函数lower_bound()  参考：[有关lower_bound()函数的使用](https://www.cnblogs.com/is-Tina/p/7294067.html)
+
+功能：函数lower_bound()在first和last中的前闭后开区间进行二分查找，返回**大于或等于val的第一个元素位置**。如果所有元素都小于val，则返回last的位置.
+
+注意：如果所有元素都小于val，则返回last的位置，且last的位置是**越界**的！！
+
+2.  函数upper_bound()
+
+功能：函数upper_bound()返回的在前闭后开区间查找的关键字的上界，返回**大于val**的第一个元素位置
+
+注意：返回查找元素的最后一个可安插位置，也就是“元素值>查找值”的第一个元素的位置。同样，如果val大于数组中全部元素，返回的是last。(注意：数组下标越界)
+
+### 子类构造函数后面加冒号的作用
+
+```c++
+C++类的构造函数中经常会看到如下格式的写法：
+
+MyWindow::MyWindow(QWidget* parent , Qt::WindowFlags flag) : QMainWindow(parent,flag)
+
+上述语句中单冒号(:)的作用是表示后面是初始化列表，一般有三种使用场景。
+
+1、对父类进行初始化
+
+调用格式为“子类构造函数 : 父类构造函数”，如下，其中QMainWindow是MyWindow的父类：
+
+MyWindow::MyWindow(QWidget* parent , Qt::WindowFlags flag) : QMainWindow(parent,flag)
+
+2、对类成员进行初始化
+
+调用格式为“构造函数 : A(初始值),B(初始值),C(初始值)……”，如下，其中A、B、C分别是类的成员变量：
+
+    class rectangle //头文件中类定义
+    {
+    public:
+        rectangle( int pointX, int pointY, int Width, int Length );
+    private:
+        CPoint m_point;
+        int m_Width;
+        int m_Length;
+    };
+     
+    rectangle::rectangle(int pointX, int pointY, int Width, int Length) : m_point(pointX,pointY),m_Width(Width),m_Length(Length)//源文件中构造函数实现
+    {
+        todo......
+    }
+
+当然，上面构造函数的实现与下面的写法等价
+
+    rectangle::rectangle(int pointX, int pointY, int Width, int Length)//源文件中构造函数实现
+    {
+        m_point.X = pointX;
+        m_point.Y = pointY;
+        m_Width   = Width;
+        m_Length  = Length;
+        todo......
+    }
+
+3、对类的const成员变量进行初始化
+
+由于const成员变量的值无法在构造函数内部初始化，因此只能在变量定义时赋值或使用初始化列表赋值。
+
+对于2、3中的应用场景，有以下两点说明：
+
+1、构造函数列表初始化执行顺序与成员变量在类中声明顺序相同，与初始化列表中语句书写先后无关。
+
+2、相对于在构造函数中赋值，初始化列表执行效率更高。
+```

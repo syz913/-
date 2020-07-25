@@ -57,8 +57,8 @@ $$
 $$
 (arcsinx)'=1/\sqrt{1-x^2} \\
 (arccosx)'=-1/\sqrt{1-x^2} \\
-(arctanx)'=1/\sqrt{1+x^2} \\
-(arccotx)'=-1/\sqrt{1+x^2}
+(arctanx)'=1/{(1+x^2)} \\
+(arccotx)'=-1/{(1+x^2)}
 $$
 
 ##### Fourier级数
@@ -70,7 +70,7 @@ $$
 Dirichlet积分:   \int(\frac{sinx}{x})dx=\frac{\pi}{2}
 $$
 
-
+![image-20200721201602534](images/image-20200721201602534.png)
 
 ##### 常用公式代码
 
